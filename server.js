@@ -3,18 +3,45 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const cors = require('cors');
 const path = require('path');
+const fs = require('fs');
+const { v4: uuidv4 } = require('uuid');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 const JWT_SECRET = process.env.JWT_SECRET || 'your-secret-key-change-this-in-production';
+const USERS_FILE = path.join(__dirname, 'users.json');
 
 // Middleware
 app.use(cors());
 app.use(express.json());
 app.use(express.static(path.join(__dirname, '.')));
 
-// In-memory storage for users (use a database in production)
-const users = [];
+// Load users from file or create empty array
+let users = [];
+function loadUsers() {
+    try {
+        if (fs.existsSync(USERS_FILE)) {
+            const data = fs.readFileSync(USERS_FILE, 'utf8');
+            users = JSON.parse(data);
+        } else {
+            users = [];
+        }
+    } catch (error) {
+        console.error('Error loading users:', error);
+        users = [];
+    }
+}
+
+function saveUsers() {
+    try {
+        fs.writeFileSync(USERS_FILE, JSON.stringify(users, null, 2));
+    } catch (error) {
+        console.error('Error saving users:', error);
+    }
+}
+
+// Initialize users
+loadUsers();
 
 // Helper function to find user by email
 const findUserByEmail = (email) => {
