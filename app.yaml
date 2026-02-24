@@ -1,0 +1,52 @@
+runtime: nodejs18
+
+env: standard
+
+handlers:
+# Serve static files
+- url: /(.*\.(css|js|png|jpg|jpeg|gif|ico|svg|woff|woff2|ttf|eot))$
+  static_files: \1
+  upload: .*\.(css|js|png|jpg|jpeg|gif|ico|svg|woff|woff2|ttf|eot)$
+  expiration: "1d"
+
+# Serve all other files as static
+- url: /(.+)
+  static_files: \1
+  upload: .+
+
+# Serve the main page
+- url: /
+  static_files: index.html
+  upload: index.html
+
+automatic_scaling:
+  min_instances: 0
+  max_instances: 10
+  target_cpu_utilization: 0.6
+  target_throughput_utilization: 0.6
+  max_concurrent_requests: 50
+
+resources:
+  cpu: 1
+  memory_gb: 1
+  disk_size_gb: 1
+
+env_variables:
+  NODE_ENV: "production"
+  # In production, you should set a strong JWT secret
+  # JWT_SECRET: "your-production-secret-key-here"
+
+# Enable health checks
+readiness_check:
+  path: "/api/health"
+  check_interval_sec: 30
+  timeout_sec: 10
+  failure_threshold: 3
+  success_threshold: 1
+
+liveness_check:
+  path: "/api/health"
+  check_interval_sec: 30
+  timeout_sec: 10
+  failure_threshold: 3
+  success_threshold: 1

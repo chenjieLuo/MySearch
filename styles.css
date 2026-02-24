@@ -1,0 +1,355 @@
+/* CSS Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #333;
+}
+
+.container {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 420px;
+    padding: 40px;
+    text-align: center;
+    animation: fadeIn 0.5s ease-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Brand Section */
+.brand-section h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #2d3748;
+    margin-bottom: 8px;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.brand-section p {
+    color: #718096;
+    font-size: 1rem;
+    font-weight: 400;
+}
+
+/* Auth Container */
+.auth-container {
+    margin-top: 30px;
+}
+
+/* Tabs */
+.tabs {
+    display: flex;
+    background: #e2e8f0;
+    border-radius: 12px;
+    padding: 4px;
+    margin-bottom: 30px;
+    overflow: hidden;
+}
+
+.tab-btn {
+    flex: 1;
+    padding: 12px;
+    border: none;
+    background: transparent;
+    color: #718096;
+    font-weight: 500;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    font-size: 0.95rem;
+}
+
+.tab-btn.active {
+    background: white;
+    color: #2d3748;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.tab-btn:hover:not(.active) {
+    background: rgba(255, 255, 255, 0.5);
+}
+
+/* Forms */
+.auth-form {
+    display: none;
+    animation: slideIn 0.3s ease-out;
+}
+
+.auth-form.active {
+    display: block;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.form-group {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #4a5568;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 14px 16px;
+    border: 2px solid #e2e8f0;
+    border-radius: 12px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    background: #ffffff;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: #667eea;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+.form-group input::placeholder {
+    color: #a0aec0;
+}
+
+/* Form Options */
+.form-options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    font-size: 0.875rem;
+}
+
+.checkbox-label {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    color: #4a5568;
+}
+
+.checkbox-label input[type="checkbox"] {
+    margin-right: 8px;
+    accent-color: #667eea;
+}
+
+.forgot-link, .terms-link {
+    color: #667eea;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.forgot-link:hover, .terms-link:hover {
+    text-decoration: underline;
+}
+
+/* Buttons */
+.auth-btn {
+    width: 100%;
+    padding: 14px;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+}
+
+.auth-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+}
+
+.auth-btn:active {
+    transform: translateY(0);
+}
+
+/* Divider */
+.divider {
+    margin: 24px 0;
+    position: relative;
+    text-align: center;
+}
+
+.divider span {
+    background: white;
+    padding: 0 15px;
+    color: #a0aec0;
+    font-size: 0.875rem;
+    position: relative;
+    z-index: 1;
+}
+
+.divider::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: #e2e8f0;
+    z-index: 0;
+}
+
+/* Social Buttons */
+.social-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    width: 100%;
+    padding: 12px;
+    border-radius: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-bottom: 12px;
+    border: 2px solid;
+}
+
+.social-btn.google-btn {
+    background: white;
+    color: #718096;
+    border-color: #e2e8f0;
+}
+
+.social-btn.google-btn:hover {
+    background: #f7fafc;
+    border-color: #cbd5e0;
+}
+
+.social-btn.apple-btn {
+    background: #2d3748;
+    color: white;
+    border-color: #2d3748;
+}
+
+.social-btn.apple-btn:hover {
+    background: #1a202c;
+    border-color: #1a202c;
+}
+
+.social-icon {
+    font-size: 1.2rem;
+    font-weight: 800;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+}
+
+/* Footer */
+.footer-note {
+    margin-top: 20px;
+    font-size: 0.8rem;
+    color: #718096;
+}
+
+.footer-note a {
+    color: #667eea;
+    text-decoration: none;
+}
+
+.footer-note a:hover {
+    text-decoration: underline;
+}
+
+/* Responsive Design */
+@media (max-width: 480px) {
+    .container {
+        max-width: 95%;
+        padding: 24px;
+    }
+    
+    .brand-section h1 {
+        font-size: 2rem;
+    }
+    
+    .tabs {
+        padding: 2px;
+    }
+    
+    .tab-btn {
+        padding: 10px;
+        font-size: 0.9rem;
+    }
+}
+
+/* Success/Error Messages */
+.message {
+    padding: 12px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    animation: fadeIn 0.3s ease-out;
+}
+
+.message.success {
+    background: #e6fffa;
+    color: #234e52;
+    border: 1px solid #b2f5ea;
+}
+
+.message.error {
+    background: #fed7d7;
+    color: #742a2a;
+    border: 1px solid #feb2b2;
+}
+
+/* Loading Spinner */
+.loading {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 3px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    border-top-color: #fff;
+    animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
